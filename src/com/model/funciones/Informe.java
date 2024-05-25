@@ -24,6 +24,29 @@ public class Informe {
     private Date inicioFaseLutea;
     private Date inicioSiguientePeriodo;
 
+    public Informe() {
+    }
+
+    public Informe(String usuario, String nombre, String email, String contrasenha, int edad, int mediaCiclo, int mediaSangrado, Date lastperiod, int duracionFaseMenstrual, int duracionFaseFolicular, int duracionFaseOvulacion, int duracionFaseLutea, Date inicioFaseMenstrual, Date inicioFaseFolicular, Date inicioFaseOvulacion, Date inicioFaseLutea, Date inicioSiguientePeriodo) {
+        this.usuario = usuario;
+        this.nombre = nombre;
+        this.email = email;
+        this.contrasenha = contrasenha;
+        this.edad = edad;
+        this.mediaCiclo = mediaCiclo;
+        this.mediaSangrado = mediaSangrado;
+        this.lastperiod = lastperiod;
+        this.duracionFaseMenstrual = duracionFaseMenstrual;
+        this.duracionFaseFolicular = duracionFaseFolicular;
+        this.duracionFaseOvulacion = duracionFaseOvulacion;
+        this.duracionFaseLutea = duracionFaseLutea;
+        this.inicioFaseMenstrual = inicioFaseMenstrual;
+        this.inicioFaseFolicular = inicioFaseFolicular;
+        this.inicioFaseOvulacion = inicioFaseOvulacion;
+        this.inicioFaseLutea = inicioFaseLutea;
+        this.inicioSiguientePeriodo = inicioSiguientePeriodo;
+    }
+
     public String getUsuario() {
         return usuario;
     }

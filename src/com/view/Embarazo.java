@@ -5,6 +5,7 @@ import com.controller.GenerateDiaFases;
 import com.controller.InformeBuilder;
 import com.model.funciones.Menstruacion;
 import com.model.funciones.Informe;
+import com.model.usuario.Usuario;
 import com.view.cuestionarios.uso.UsoProg;
 
 import javax.swing.*;
@@ -19,7 +20,7 @@ public class Embarazo {
     private JLabel FotoEmbarazo;
     private GenerateDiaFases generateDiaFases;
 InformeBuilder informeBuilder = new InformeBuilder();
-    public Embarazo(Menstruacion menstruacion) {
+    public Embarazo(Menstruacion menstruacion, Usuario usuario) {
         generateDiaFases = new GenerateDiaFases(menstruacion);
          informeBuilder.fromMenstruacion(menstruacion);
         String texto = "Tu periodo fértil comprende de: " + generateDiaFases.CalculoInicioFaseOvulacion() + " a " + generateDiaFases.CalculoInicioFaseLutea();
@@ -28,7 +29,7 @@ InformeBuilder informeBuilder = new InformeBuilder();
         buttonVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                UsoProg usoProg = new UsoProg(menstruacion);
+                UsoProg usoProg = new UsoProg(menstruacion, usuario);
                 usoProg.setVisible(true);
                 ((JFrame) SwingUtilities.getWindowAncestor(panel1)).dispose();
             }
@@ -37,9 +38,7 @@ InformeBuilder informeBuilder = new InformeBuilder();
         buttonGenerarInforme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GenerarPDF generarPDF = new GenerarPDF();
-                generarPDF.generarInforme();
-
+                GenerarPDF.generarInforme(menstruacion, usuario);
             }
         });
     }

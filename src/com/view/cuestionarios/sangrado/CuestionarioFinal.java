@@ -20,20 +20,20 @@ public class CuestionarioFinal {
     int duracionSangrado;
     private Usuario usuario;
     Duracion duracion = new Duracion();
-    Menstruacion menstruacion = new Menstruacion();
 
     public CuestionarioFinal(Usuario usuario) {
         try {
-            this.usuario = usuario;
+            Menstruacion menstruacion = new Menstruacion();
             menstruacion.setUsuario(usuario.getUsuario()); // Usa el usuario pasado al constructor
-            getJpanel();
+            System.out.println("Usuario Menstr. = " + menstruacion.getUsuario());
+            getJpanel(menstruacion, usuario);
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al inicializar el cuestionario: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    public void getJpanel() {
+    public void getJpanel(Menstruacion menstruacion, Usuario usuario) {
         try {
             numerCiclo.setModel(new SpinnerNumberModel(28, 1, Integer.MAX_VALUE, 1));
             numerSangrado.setModel(new SpinnerNumberModel(5, 1, Integer.MAX_VALUE, 1));
@@ -52,7 +52,7 @@ public class CuestionarioFinal {
                         }
                         menstruacion.setMediaCiclo(duracionCiclo);
                         menstruacion.setMediaSangrado(duracionSangrado);
-                        new SelectorFecha(menstruacion, duracion); // Pasa la instancia de Menstruacion a SelectorFecha
+                        new SelectorFecha(menstruacion, duracion, usuario); // Pasa la instancia de Menstruacion a SelectorFecha
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(null, "Por favor, introduce números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
                     } catch (IllegalArgumentException ex) {

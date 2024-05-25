@@ -5,6 +5,7 @@ import com.model.decoracion.DateLabelFormatter;
 import com.model.fases.FaseMenstrual;
 import com.model.funciones.Menstruacion;
 import com.model.tiempo.Duracion;
+import com.model.usuario.Usuario;
 import com.view.cuestionarios.uso.UsoProg;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
@@ -27,13 +28,11 @@ public class SelectorFecha extends JFrame {
     private Date oneYearAgo;
     InsertDatabase insertDatabase = new InsertDatabase();
     FaseMenstrual faseMenstrual = new FaseMenstrual();
-    Menstruacion menstruacion;
 
-    public SelectorFecha(Menstruacion menstruacion, Duracion duracion) {
-        this.menstruacion = menstruacion; // Asegúrate de que la instancia se asigna aquí
+    public SelectorFecha(Menstruacion menstruacion, Duracion duracion, Usuario usuario) {
         try {
             JPanel panel = getjPanel();
-            getBtnContinuar(panel);
+            getBtnContinuar(panel, menstruacion, duracion, usuario);
             add(panel, BorderLayout.CENTER);
         } catch (Exception e) {
             e.printStackTrace();
@@ -42,7 +41,7 @@ public class SelectorFecha extends JFrame {
         setVisible(true);
     }
 
-    private void getBtnContinuar(JPanel panel) {
+    private void getBtnContinuar(JPanel panel, Menstruacion menstruacion, Duracion duracion, Usuario usuario) {
         JButton btnContinuar = new JButton("Continuar");
         btnContinuar.setBackground(new Color(255, 105, 180));
         btnContinuar.setForeground(Color.WHITE);
@@ -63,7 +62,7 @@ public class SelectorFecha extends JFrame {
                     faseMenstrual.setInicioDiaMenstrual(selectedDate);
                     insertDatabase.insertDateIntoDatabase(menstruacion); // Pasa menstruacion aquí
                     dispose();
-                    UsoProg usoProg = new UsoProg(menstruacion);
+                    UsoProg usoProg = new UsoProg(menstruacion, usuario);
                     usoProg.setVisible(true);
                 } catch (Exception ex) {
                     ex.printStackTrace();

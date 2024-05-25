@@ -2,6 +2,7 @@ package com.view.cuestionarios.uso;
 
 import com.database.DatabaseHandlerDeporte;
 import com.model.funciones.Menstruacion;
+import com.model.usuario.Usuario;
 import com.view.Embarazo;
 
 import javax.swing.*;
@@ -22,15 +23,13 @@ public class UsoProg {
     private JButton planningOcioButton;
     private JPanel PanelPrincipal;
     private JFrame frame;
-    private Menstruacion menstruacion;
 
     /**
      * Crea una nueva instancia de UsoProg.
      * Inicializa la interfaz gráfica de usuario y configura los listeners de los botones.
      * @param menstruacion la instancia de Menstruacion que se pasará a otras vistas
      */
-    public UsoProg(Menstruacion menstruacion) {
-        this.menstruacion = menstruacion;
+    public UsoProg(Menstruacion menstruacion, Usuario usuario) {
         frame = new JFrame("UsoProg");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 300);
@@ -45,7 +44,7 @@ public class UsoProg {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                Embarazo embarazo = new Embarazo(menstruacion);
+                Embarazo embarazo = new Embarazo(menstruacion, usuario);
                 JFrame embarazoFrame = new JFrame("Embarazo");
                 embarazoFrame.setContentPane(embarazo.getPanel());
                 embarazoFrame.pack();

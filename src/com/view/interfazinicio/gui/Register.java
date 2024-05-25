@@ -113,6 +113,7 @@ public Informe informe=new Informe();
                                 frame.setSize(600, 370);
                                 frame.setVisible(true);
                                 frame.setLocationRelativeTo(null);
+                                System.out.println("UWU" + usuario.getUsuario());
                                 CuestionarioFinal cuestionario = new CuestionarioFinal(usuario);
                                 frame.getContentPane().add(cuestionario.panelPrincipal);
                                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
